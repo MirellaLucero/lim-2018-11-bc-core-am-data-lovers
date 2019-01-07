@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Happy+Monkey');
 @import url('https://fonts.googleapis.com/css?family=Acme|Lobster|Paprika|Patrick+Hand+SC');
 @font-face {
 	font-family: pokemon;
@@ -170,15 +171,24 @@ cursor: pointer;
 }
 
 #result-found {
+	font-family: 'Happy Monkey',cursive;
 	margin: 5px 5px;
+	padding: 10px;
 	font-style: italic;
 	color: black;
 }
 
-#avg-weight, #avg-height {
+#avg-weight {
+	font-family: 'Happy Monkey',cursive;
 	margin: 20px 20px;
 	color: black;
 }
+
+#avg-height {
+	font-family: 'Happy Monkey',cursive;
+	margin: 20px 20px;
+	color: black;
+} 
 
 /* Clase para que se oculte el div */
 .unseen {

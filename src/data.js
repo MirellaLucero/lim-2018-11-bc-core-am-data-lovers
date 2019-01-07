@@ -33,6 +33,7 @@ const uniqueTypes = (data) => {
   return acumType;
 };
 
+// Realizando filtrado por Tipo
 const filterForType = (arr, nameType) => {
   let arrFiltType = [];
   arr.filter((elem) => {
@@ -43,6 +44,7 @@ const filterForType = (arr, nameType) => {
   return arrFiltType;
 };
 
+//Obteniendo promedio de peso
 const getAverageWeight = (arr, nameType) => {
   let newArr = [];
   const arrFilt = filterForType(arr, nameType);
@@ -57,6 +59,7 @@ const getAverageWeight = (arr, nameType) => {
   return Math.round(avgW * 100) / 100;
 };
 
+//Obteniendo promedio de altura
 const getAverageHeight = (arr, nameType) => {
   let newArr = [];
   const arrFilt = filterForType(arr, nameType);
@@ -71,13 +74,14 @@ const getAverageHeight = (arr, nameType) => {
   return Math.round(avgH * 100) / 100;
 };
 
-
+//Calculando cantidad de tipo
 const calculateQuantityByType = (arr, type) => {
   const filtrado = filterForType(arr, type);
   const newArr = filtrado.length;
   return newArr;
 };
 
+// Ordenando los pokemones de A-Z y Z-A
 const order = (arr, typeOfOrder) => {
   if (typeOfOrder === 'nameAsc') {
     const ordenado = arr.sort((propiedad1, propiedad2) => {

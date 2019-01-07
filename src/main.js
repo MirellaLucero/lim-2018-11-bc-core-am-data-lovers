@@ -7,44 +7,6 @@ const divPokemon = document.getElementById('list-pokemon');
 // Guardando el id del select
 const selectTypes = document.getElementById('paint-types');
 
-// const pokemonName = document.getElementById('pokemon-name').value
-
-// Botón de búsqueda H02
-const btnSearch = document.getElementById('btn-search');
-
-// Botón de búsqueda H03
-const btnSearchAdv = document.getElementById('btn-search-adv');
-
-// Botón de búsqueda H03 PARA FILTRAR
-// const btnSearchByType = document.getElementById('btn-search-types');
-
-// const nameOfType = document.getElementById('nameOfType');
-
-// Agregando evento al botón de búsqueda H02
-btnSearch.addEventListener('click', () => {
-  document.getElementById('types').style.display = 'none';
-  document.getElementById('btnReturn').style.display = 'block';
-  const pokemonName = document.getElementById('pokemon-name').value;
-  if (pokemonName === '') {
-    document.getElementById('warning').innerHTML = 'Ingrese el nombre del pokémon que desea buscar';
-  } else {
-    const buscado = pokemon.searchByName(dataMainPokemon, pokemonName);
-    document.getElementById('warning').innerHTML = '';
-    paintPokemones(buscado);
-  }
-});
-
-// Agregando evento al botón de búsqueda avanzada H03
-btnSearchAdv.addEventListener('click', () => {
-  document.getElementById('selectOrder').style.display = 'none';
-  const types = document.getElementById('types');
-  types.classList.remove('unseen');
-  types.classList.remove('show');
-});
-
-btnSearchAdv.addEventListener('dblclick', () => {
-  document.getElementById('types').style.display = 'none';
-});
 // Pintando pokemones en HTML(Historia de usuario #01)
 const paintPokemones = (arr) => {
   let listOfPokemones = '';
@@ -76,6 +38,26 @@ const paintPokemones = (arr) => {
 
 paintPokemones(dataMainPokemon);
 
+// Botón de búsqueda H02
+const btnSearch = document.getElementById('btn-search');
+
+// Agregando evento al botón de búsqueda H02
+btnSearch.addEventListener('click', () => {
+  document.getElementById('types').style.display = 'none';
+  document.getElementById('btnReturn').style.display = 'block';
+  const pokemonName = document.getElementById('pokemon-name').value;
+  if (pokemonName === '') {
+    document.getElementById('warning').innerHTML = 'Ingrese el nombre del pokémon que desea buscar';
+  } else {
+    const buscado = pokemon.searchByName(dataMainPokemon, pokemonName);
+    document.getElementById('warning').innerHTML = '';
+    paintPokemones(buscado);
+  }
+});
+
+// Botón de búsqueda H03
+const btnSearchAdv = document.getElementById('btn-search-adv');
+
 // Pintando pokemones en el select H03
 const paintTypesInSelect = (arr) => {
   let typesOfPokemon = '';
@@ -91,6 +73,16 @@ const paintTypesInSelect = (arr) => {
 
 paintTypesInSelect(dataMainPokemon);
 
+// Agregando evento al botón de búsqueda avanzada H03
+btnSearchAdv.addEventListener('click', () => {
+  document.getElementById('selectOrder').style.display = 'none';
+  const types = document.getElementById('types');
+  types.classList.remove('unseen');
+  types.classList.remove('show');
+});
+
+
+
 const resultFound = document.getElementById('result-found');
 const avgWeight = document.getElementById('avg-weight');
 const avgHeight = document.getElementById('avg-height');
@@ -103,23 +95,17 @@ btnSearchTypes.addEventListener('click', () => {
   const paintTypes = document.getElementById('paint-types').value;
   const filter = pokemon.filterForType(dataMainPokemon, paintTypes);
   paintPokemones(filter);
-  const result = resultFound.innerHTML = pokemon.calculateQuantityByType(dataMainPokemon, paintTypes) + ' result found';
-  const weight = avgWeight.innerHTML = 'Average weight: ' + pokemon.getAverageWeight(dataMainPokemon, paintTypes);
-  const height = avgHeight.innerHTML = 'Average height: ' + pokemon.getAverageHeight(dataMainPokemon, paintTypes);
-  const card = ` 
-<div>
- <h4 class="result"> ${result} </h4>
- <h5 class="weight"> ${weight} </h4>
- <h6 class= "height"> ${height} </h4>
- </div>
- `;
-  return card;
+  resultFound.innerHTML = pokemon.calculateQuantityByType(dataMainPokemon, paintTypes) + ' result found';
+  avgWeight.innerHTML = 'Average weight: ' + pokemon.getAverageWeight(dataMainPokemon, paintTypes);
+  avgHeight.innerHTML = 'Average height: ' + pokemon.getAverageHeight(dataMainPokemon, paintTypes);
 });
 
+// Botón para actualizar la página
 btnReturn1.addEventListener('click', () => {
   location.reload();
 });
 
+// Almacenando select en una const
 const buttonOrderBy = document.getElementById('selectOrder');
 
 buttonOrderBy.addEventListener('click', () => {
