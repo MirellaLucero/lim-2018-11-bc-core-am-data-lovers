@@ -4,6 +4,9 @@ const dataMainPokemon = pokemon.getDataMainOfPokemon(POKEMON.pokemon);
 // Dando id a la const donde se pintaran los pokemones
 const divPokemon = document.getElementById('list-pokemon');
 
+// Guardando el id del select
+const selectTypes = document.getElementById('paint-types');
+
 // Pintando pokemones en HTML(Historia de usuario #01)
 const paintPokemones = (arr) => {
   let listOfPokemones = '';
@@ -34,9 +37,6 @@ const paintPokemones = (arr) => {
 };
 
 paintPokemones(dataMainPokemon);
-
-// Guardando el id del select
-const selectTypes = document.getElementById('paint-types');
 
 // Botón de búsqueda H02
 const btnSearch = document.getElementById('btn-search');
