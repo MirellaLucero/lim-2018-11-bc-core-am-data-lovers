@@ -96,8 +96,7 @@ option {
 	margin: 10px;
 	padding: 10px;
 	display: none;
-	text-align: center;
-	background: #8cc43c;
+	background: #333;
     color: #fff;
     border-radius: 7px;
     cursor: pointer;
