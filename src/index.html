@@ -2,8 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PokePedia</title>
     <link rel="icon" type="image/png" href="https://image.flaticon.com/icons/png/512/280/280954.png" />
     <link rel="stylesheet" href="style.css" type="text/css"/>
@@ -30,36 +29,40 @@
     <main class="main center-items"> 
       <div class="container">
         <h2>WELCOME TO THE POKEMON WORLD</h2>
-        <div class="sectionOfToolbar">
+        <div class="section-of-toolbar">
           <p>Enter the name of the Pokémon</p>
           <input type="text" id="pokemon-name" class="toolbar-search"/>
           <button id="btn-search" class="icon-search button-search"></button>
           <p id="warning"></p>
         </div>
-        <button id="btn-search-adv" class="button-advancedSearch">Advanced search</button>
+        <button id="btn-search-adv">Advanced search</button>
         <div id ="types" class="unseen aligne">
           <p class="p-types">Types:</p>
           <select name="paint-types" id="paint-types" class="select">
             <!--select con tipos de Pokémon-->
           </select>
           <button id="btn-search-types" class="search-select">Search</button>
-          <p id="result-found" class="aligne"></p>
+          <p id="result-found"></p>
           <div>
-            <p id="avg-weight" class="aligne"></p>
-            <p id="avg-height" class="aligne"></p>
+            <p id="avg-weight"></p>
+            <p id="avg-height"></p>
           </div>
         </div>
-        <select name="selectOrder" id="selectOrder" class="select2">
-          <option value="noSort">Order by...</option>
+        <select name="selectOrder" id="select-order" class="select2">
+          <option value="not-sort">Order by...</option>
           <option value="nameAsc">A-Z</option>
           <option value="nameDesc">Z-A</option>
         </select>
+<<<<<<< HEAD
         <div id="list-pokemon" class="containerdivs center-items">
+=======
+        <div id="list-pokemon" class="container-divs center-items">
+>>>>>>> 96e1ae024dbd4ba716924d18fd9b3b91878d860b
           <!--lista de pokemones-->
         </div>
-        <div  class="btn-return center-items">
-          <button id="btnReturn">RETURN</button> 
-        </div>
+        <!-- <div class="center-items"> -->
+          <button id="btn-return" class=" center-items">RETURN</button> 
+        <!-- </div> -->
       </div>
     </main>
     <footer class="footer">

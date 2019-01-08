@@ -148,21 +148,15 @@ describe('pokemon.filterForType', () => {
 });
 
 // Test para la función para sacar el promedio de peso y talla de un tipo de Pokémon
-describe('pokemon.getAverageWeigth', () => {
+describe('pokemon.getAverage', () => {
   it('debería retornar una función', () => {
-    expect(typeof pokemon.getAverageWeight).toBe('function');
+    expect(typeof pokemon.getAverage).toBe('function');
   });
   it('debería retornar el promedio del peso de los Pokémon tipo "Poison"', () => {
-    expect(pokemon.getAverageWeight(input, 'Poison')).toEqual(39.97);
+    expect(pokemon.getAverage(input, 'Poison', 'weight')).toEqual(39.97);
   });
-});
-
-describe('pokemon.getAverageHeight', () => {
-  it('debería retornar una función', () => {
-    expect(typeof pokemon.getAverageHeight).toBe('function');
-  });
-  it('debería retornar el promedio del peso de los Pokémon tipo "Poison"', () => {
-    expect(pokemon.getAverageHeight(input, 'Poison')).toEqual(1.24);
+  it('debería retornar el promedio de la altura de los Pokémon tipo "Poison"', () => {
+    expect(pokemon.getAverage(input, 'Poison', 'height')).toEqual(1.24);
   });
 });
 

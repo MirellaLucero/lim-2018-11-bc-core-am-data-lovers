@@ -41,32 +41,38 @@ paintPokemones(dataMainPokemon);
 // Botón de búsqueda H02
 const btnSearch = document.getElementById('btn-search');
 
-// Agregando evento al botón de búsqueda H02
+// Agregando evento al botón de búsqueda H02: Buscar por nombre
 btnSearch.addEventListener('click', () => {
   document.getElementById('types').style.display = 'none';
-  document.getElementById('btnReturn').style.display = 'block';
+  document.getElementById('btn-return').style.display = 'block';
   const pokemonName = document.getElementById('pokemon-name').value;
   if (pokemonName === '') {
-    document.getElementById('warning').innerHTML = 'Ingrese el nombre del pokémon que desea buscar';
+    document.getElementById('warning').innerHTML = 'Enter the name of the Pokémon you want to search';
   } else {
-    const buscado = pokemon.searchByName(dataMainPokemon, pokemonName);
+    const searched = pokemon.searchByName(dataMainPokemon, pokemonName);
     document.getElementById('warning').innerHTML = '';
-    paintPokemones(buscado);
+    paintPokemones(searched);
   }
 });
 
 // Botón de búsqueda H03
 const btnSearchAdv = document.getElementById('btn-search-adv');
 
-// Agregando evento al botón de búsqueda avanzada H03
+// Agregando evento al botón de búsqueda avanzada H03: Para que se muestre el select de tipos
 btnSearchAdv.addEventListener('click', () => {
-  document.getElementById('selectOrder').style.display = 'none';
+  document.getElementById('select-order').style.display = 'none';
   const types = document.getElementById('types');
   types.classList.remove('unseen');
   types.classList.remove('show');
 });
 
-// Pintando pokemones en el select H03
+btnSearchAdv.addEventListener('dblclick', () => {
+  document.getElementById('types').style.display = 'none';
+  document.getElementById('select-order').style.display = 'inline-block';
+  location.reload();
+});
+
+// Pintando los tipos en el select H03
 const paintTypesInSelect = (arr) => {
   let typesOfPokemon = '';
   const types = pokemon.uniqueTypes(arr);
@@ -82,33 +88,34 @@ const paintTypesInSelect = (arr) => {
 paintTypesInSelect(dataMainPokemon);
 
 // Botón para actualizar
-const btnReturn1 = document.getElementById('btnReturn');
+const btnReturn = document.getElementById('btn-return');
 
-btnReturn1.addEventListener('click', () => {
+btnReturn.addEventListener('click', () => {
   location.reload();
 });
 
-// constantes para los promedios y botón
+// Constantes para los promedios y botón
 const resultFound = document.getElementById('result-found');
 const avgWeight = document.getElementById('avg-weight');
 const avgHeight = document.getElementById('avg-height');
 const btnSearchTypes = document.getElementById('btn-search-types');
 
+// Botón para que se muestre cuantos se encontraron, promedio de peso y talla H4
 btnSearchTypes.addEventListener('click', () => {
-  document.getElementById('btnReturn').style.display = 'block';
+  document.getElementById('btn-return').style.display = 'block';
   const paintTypes = document.getElementById('paint-types').value;
   const filter = pokemon.filterForType(dataMainPokemon, paintTypes);
   paintPokemones(filter);
   resultFound.innerHTML = pokemon.calculateQuantityByType(dataMainPokemon, paintTypes) + ' result found';
-  avgWeight.innerHTML = 'Average weight: ' + pokemon.getAverageWeight(dataMainPokemon, paintTypes);
-  avgHeight.innerHTML = 'Average height: ' + pokemon.getAverageHeight(dataMainPokemon, paintTypes);
+  avgWeight.innerHTML = 'Average weight: ' + pokemon.getAverage(dataMainPokemon, paintTypes, 'weight') + ' kg';
+  avgHeight.innerHTML = 'Average height: ' + pokemon.getAverage(dataMainPokemon, paintTypes, 'height') + ' m';
 });
 
-// Botón ordenar 
-const btnOrderBy = document.getElementById('selectOrder');
+// Select para ordenar H05
+const selectOrder = document.getElementById('select-order');
 
-btnOrderBy.addEventListener('click', () => {
-  const selectOrder = document.getElementById('selectOrder').value;
-  const ordered = pokemon.order(dataMainPokemon, selectOrder);
+selectOrder.addEventListener('change', () => {
+  const valueSelect = document.getElementById('select-order').value;
+  const ordered = pokemon.order(dataMainPokemon, valueSelect);
   paintPokemones(ordered);
 });

@@ -24,13 +24,13 @@ const getTypes = (data) => {
 
 // Obteniendo tipos únicos H03 para el select
 const uniqueTypes = (data) => {
-  const acumType = getTypes(data).reduce((acum, elem) => {
-    if (elem !== '' && acum.indexOf(elem) === -1) {
-      acum.push(elem);
+  const accumType = getTypes(data).reduce((accum, elem) => {
+    if (elem !== '' && accum.indexOf(elem) === -1) {
+      accum.push(elem);
     }
-    return acum;
+    return accum;
   }, []);
-  return acumType;
+  return accumType;
 };
 
 // Realizando filtrado por Tipo
@@ -44,66 +44,49 @@ const filterForType = (arr, nameType) => {
   return arrFiltType;
 };
 
-// Obteniendo promedio de peso
-const getAverageWeight = (arr, nameType) => {
-  let newArr = [];
-  const arrFilt = filterForType(arr, nameType);
-  arrFilt.forEach((elem) => {
-    newArr.push(parseFloat(elem.weight));
-  });
-  const sizeArr = newArr.length;
-  const total = newArr.reduce((cont, tip) => {
-    return cont + tip;
-  });
-  const avgW = total / sizeArr;
-  return Math.round(avgW * 100) / 100;
-};
-
-// Obteniendo promedio de altura
-const getAverageHeight = (arr, nameType) => {
-  let newArr = [];
-  const arrFilt = filterForType(arr, nameType);
-  arrFilt.forEach((elem) => {
-    newArr.push(parseFloat(elem.height));
-  });
-  const sizeArr = newArr.length;
-  const total = newArr.reduce((cont, tip) => {
-    return cont + tip;
-  });
-  const avgH = total / sizeArr;
-  return Math.round(avgH * 100) / 100;
-};
-
 // Calculando cantidad de pokemones por tipo
 const calculateQuantityByType = (arr, type) => {
-  const filtrado = filterForType(arr, type);
-  const newArr = filtrado.length;
+  let newArr = [];
+  const quantity = filterForType(arr, type);
+  newArr = quantity.length;
   return newArr;
 };
 
-// Ordenando los pokemones de A-Z y Z-A
-const order = (arr, typeOfOrder) => {
-  if (typeOfOrder === 'nameAsc') {
-    const ordered = arr.sort((property1, property2) => {
-      if (property1.name > property2.name) {
-        return +1;
-      } else {
-        return -1;
-      }
-    });
-    return ordered;
-  } else if (typeOfOrder === 'nameDesc') {
-    const ordered = arr.sort((property1, property2) => {
-      if (property1.name > property2.name) {
-        return -1;
-      } else {
-        return +1;
-      }
-    });
-    return ordered;
-  }
+// Promedios de peso y talla
+const getAverage = (arr, nameType, prop) => {
+  let newArr = [];
+  const arrFilt = filterForType(arr, nameType);
+  arrFilt.forEach((elem) => {
+    newArr.push(parseFloat(elem[prop]));
+  });
+  const sizeArr = newArr.length;
+  const total = newArr.reduce((counter, number) => {
+    return counter + number;
+  });
+  const avg = total / sizeArr;
+  return Math.round(avg * 100) / 100;
 };
 
+// Ordenando por A-Z y Z-A
+const order = (data, typeOfOrder) => {
+  const compareFunction = (element1, element2) => {
+    if (element1.name > element2.name) {
+      return 1;
+    } else { 
+      return -1;
+    }
+  };
+  let ordered;
+  switch (typeOfOrder) {
+  case 'nameAsc':
+    ordered = data.sort(compareFunction);
+    break;
+  case 'nameDesc':
+    ordered = data.sort(compareFunction).reverse();  
+    break;
+  }
+  return ordered;
+};
 
 window.pokemon = {
   getDataMainOfPokemon,
@@ -111,8 +94,7 @@ window.pokemon = {
   getTypes,
   uniqueTypes,
   filterForType,
-  getAverageWeight,
-  getAverageHeight,
+  getAverage,
   calculateQuantityByType,
   order,
 };
