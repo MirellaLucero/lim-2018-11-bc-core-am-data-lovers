@@ -46,10 +46,9 @@ const filterForType = (arr, nameType) => {
 
 // Calculando cantidad de pokemones por tipo
 const calculateQuantityByType = (arr, type) => {
-  let newArr = [];
   const quantity = filterForType(arr, type);
-  newArr = quantity.length;
-  return newArr;
+  const quantityOfPokemonsByType = quantity.length;
+  return quantityOfPokemonsByType;
 };
 
 // Promedios de peso y talla
