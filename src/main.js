@@ -98,10 +98,10 @@ btnReturn.addEventListener('click', () => {
 const resultFound = document.getElementById('result-found');
 const avgWeight = document.getElementById('avg-weight');
 const avgHeight = document.getElementById('avg-height');
-const btnSearchTypes = document.getElementById('btn-search-types');
 
+const selectPaintTypes = document.getElementById('paint-types')
 // Botón para que se muestre cuantos se encontraron, promedio de peso y talla H4
-btnSearchTypes.addEventListener('click', () => {
+selectPaintTypes.addEventListener('change', () => {
   document.getElementById('btn-return').style.display = 'block';
   const paintTypes = document.getElementById('paint-types').value;
   const filter = pokemon.filterForType(dataMainPokemon, paintTypes);
