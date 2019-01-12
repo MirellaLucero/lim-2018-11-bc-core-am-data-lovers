@@ -35,9 +35,6 @@ const paintPokemones = (arr) => {
 
 paintPokemones(dataMainPokemon);
 
-// Guardando el id del select
-const selectTypes = document.getElementById('paint-types');
-
 // Botón de búsqueda H02
 const btnSearch = document.getElementById('btn-search');
 
@@ -71,6 +68,9 @@ btnSearchAdv.addEventListener('dblclick', () => {
   document.getElementById('select-order').style.display = 'inline-block';
   location.reload();
 });
+
+// Guardando el id del select
+const selectTypes = document.getElementById('paint-types');
 
 // Pintando los tipos en el select H03
 const paintTypesInSelect = (arr) => {
