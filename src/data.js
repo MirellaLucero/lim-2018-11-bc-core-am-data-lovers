@@ -46,10 +46,9 @@ const filterForType = (arr, nameType) => {
 
 // Calculando cantidad de pokemones por tipo
 const calculateQuantityByType = (arr, type) => {
-  let newArr = [];
   const quantity = filterForType(arr, type);
-  newArr = quantity.length;
-  return newArr;
+  const quantityOfPokemonsByType = quantity.length;
+  return quantityOfPokemonsByType;
 };
 
 // Promedios de peso y talla
@@ -57,14 +56,14 @@ const getAverage = (arr, nameType, prop) => {
   let newArr = [];
   const arrFilt = filterForType(arr, nameType);
   arrFilt.forEach((elem) => {
-    newArr.push(parseFloat(elem[prop]));
+    newArr.push(parseFloat(elem[prop])); // pushea los pesos de los pokemones de ese tipo
   });
-  const sizeArr = newArr.length;
-  const total = newArr.reduce((counter, number) => {
+  const sizeArr = newArr.length; // obtengo la longitud del array de pesos de cada Pokemon(tipo)
+  const total = newArr.reduce((counter, number) => { // va sumando los pesos
     return counter + number;
   });
-  const avg = total / sizeArr;
-  return Math.round(avg * 100) / 100;
+  const avg = total / sizeArr; // divide total de pesos entre el sizeArr
+  return Math.round(avg * 100) / 100; // reduce decimales
 };
 
 // Ordenando por A-Z y Z-A

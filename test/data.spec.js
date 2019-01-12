@@ -95,6 +95,7 @@ const outputOrderZA = [
 
 // Output para la HU #04 : Obtener cantidad de pokemones según su tipo
 const outputCalculate = 1;
+
 // Test para la 1era historia de usuario: Mostrar solo ciertas propiedades de la data
 describe('pokemon.getDataMainOfPokemon', () => {
   it('debería retornar una función', () => {
