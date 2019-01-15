@@ -1,11 +1,11 @@
 // Obtener data principal de Pokemon (Historia de usuario #01)
-const getDataMainOfPokemon = (arr) => {
-  let newArr = [];
-  arr.forEach((element) => {
-    newArr.push({name: element.name, img: element.img, type: element.type, height: element.height, weight: element.weight, weaknesses: element.weaknesses});
-  });
-  return newArr;
-};
+// const getDataMainOfPokemon = (data) => {
+//   let newArr = [];
+//   data.forEach((element) => {
+//     newArr.push({name: element.name, img: element.img, type: element.type, height: element.height, weight: element.weight, weaknesses: element.weaknesses});
+//   });
+//   return newArr;
+// };
 
 // Obtener pokemón por nombre (Historia de usuario #02) 
 const searchByName = (arr, name) => {
@@ -56,14 +56,14 @@ const getAverage = (arr, nameType, prop) => {
   let newArr = [];
   const arrFilt = filterForType(arr, nameType);
   arrFilt.forEach((elem) => {
-    newArr.push(parseFloat(elem[prop]));
+    newArr.push(parseFloat(elem[prop])); // pushea los pesos de los pokemones de ese tipo
   });
-  const sizeArr = newArr.length;
-  const total = newArr.reduce((counter, number) => {
+  const sizeArr = newArr.length; // obtengo la longitud del array de pesos de cada Pokemon(tipo)
+  const total = newArr.reduce((counter, number) => { // va sumando los pesos
     return counter + number;
   });
-  const avg = total / sizeArr;
-  return Math.round(avg * 100) / 100;
+  const avg = total / sizeArr; // divide total de pesos entre el sizeArr
+  return Math.round(avg * 100) / 100; // reduce decimales
 };
 
 // Ordenando por A-Z y Z-A
@@ -88,7 +88,7 @@ const order = (data, typeOfOrder) => {
 };
 
 window.pokemon = {
-  getDataMainOfPokemon,
+  // getDataMainOfPokemon,
   searchByName,
   getTypes,
   uniqueTypes,
