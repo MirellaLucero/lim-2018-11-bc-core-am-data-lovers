@@ -1,11 +1,11 @@
 // Obtener data principal de Pokemon (Historia de usuario #01)
-const getDataMainOfPokemon = (arr) => {
-  let newArr = [];
-  arr.forEach((element) => {
-    newArr.push({name: element.name, img: element.img, type: element.type, height: element.height, weight: element.weight, weaknesses: element.weaknesses});
-  });
-  return newArr;
-};
+// const getDataMainOfPokemon = (data) => {
+//   let newArr = [];
+//   data.forEach((element) => {
+//     newArr.push({name: element.name, img: element.img, type: element.type, height: element.height, weight: element.weight, weaknesses: element.weaknesses});
+//   });
+//   return newArr;
+// };
 
 // Obtener pokemón por nombre (Historia de usuario #02) 
 const searchByName = (arr, name) => {
@@ -88,7 +88,7 @@ const order = (data, typeOfOrder) => {
 };
 
 window.pokemon = {
-  getDataMainOfPokemon,
+  // getDataMainOfPokemon,
   searchByName,
   getTypes,
   uniqueTypes,
