@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PokePedia</title>
     <link rel="icon" type="image/png" href="https://image.flaticon.com/icons/png/512/280/280954.png" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
     <link rel="stylesheet" href="style.css" type="text/css"/>
     <link rel="stylesheet" href="fontello.css" type="text/css"/>
     <link rel="stylesheet" href="styledivs.css" type="text/css"/>
@@ -44,14 +45,14 @@
             <p id= "avg-weight"></p>
             <p id= "avg-height"></p>
           </div>
-          <div id="charts"> 
-          </div>
         </div>
         <select name="selectOrder" id="select-order" class="select2">
           <option value="not-sort">Order by...</option>
           <option value="nameAsc">A-Z</option>
           <option value="nameDesc">Z-A</option>
         </select>
+        <button id="chartsButton">MOSTRAR CHART</button>
+        <div id="charts" class="charts-graphic"></div>
         <div id="list-pokemon" class="container-divs center-items">
           <!--lista de pokemones-->
         </div>

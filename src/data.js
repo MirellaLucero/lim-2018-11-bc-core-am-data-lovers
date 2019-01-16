@@ -87,6 +87,14 @@ const order = (data, typeOfOrder) => {
   return ordered;
 };
 
+const quantityByType = (arr, type) => {
+  let quantity = filterForType(arr, type);
+  let quantityOfPokemonsByType = quantity.length;
+  return [type, quantityOfPokemonsByType];
+};
+ 
+// const quantityByType = (data) => {};
+
 window.pokemon = {
   // getDataMainOfPokemon,
   searchByName,
@@ -96,4 +104,5 @@ window.pokemon = {
   getAverage,
   calculateQuantityByType,
   order,
+  quantityByType,
 };

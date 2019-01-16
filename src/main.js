@@ -1,16 +1,3 @@
-// c
-
-// fetch(url) 
-//   .then( response => response.json()) 
-//   .then(function(res) {
-//     return (res);
-//   });
-
-
-// const data = fetch(url);
-
-// function loadJSON() {
-
 const url = 'https://mirellalucero.github.io/lim-2018-11-bc-core-am-data-lovers/src/data/pokemon/pokemon.json'; 
 fetch(url)
   .then(function(res) {
@@ -23,6 +10,7 @@ fetch(url)
   .catch(function(error) {
     return ('Hubo un problema con la petición Fetch:' + error.message);
   });
+
 
 function contentFunction(dataMainPokemon) {
 // Dando id a la const donde se pintaran los pokemones
@@ -68,7 +56,7 @@ function contentFunction(dataMainPokemon) {
   // Agregando evento al botón de búsqueda H02: Buscar por nombre
   btnSearch.addEventListener('click', () => {
     document.getElementById('types').style.display = 'none';
-    document.getElementById('btn-return').style.display = 'block';
+    document.getElementById('charts').style.display = 'none';
     const pokemonName = document.getElementById('pokemon-name').value;
     if (pokemonName === '') {
       document.getElementById('warning').innerHTML = 'Enter the name of the Pokémon you want to search';
@@ -85,6 +73,8 @@ function contentFunction(dataMainPokemon) {
   // Agregando evento al botón de búsqueda avanzada H03: Para que se muestre el select de tipos
   btnSearchAdv.addEventListener('click', () => {
     document.getElementById('select-order').style.display = 'none';
+    document.getElementById('charts').style.display = 'none';
+    document.getElementById('list-pokemon').style.display = 'block';
     const types = document.getElementById('types');
     types.classList.remove('unseen');
     types.classList.remove('show');
@@ -139,8 +129,58 @@ function contentFunction(dataMainPokemon) {
   const selectOrder = document.getElementById('select-order');
 
   selectOrder.addEventListener('change', () => {
+    document.getElementById('charts').style.display = 'none';
+    document.getElementById('list-pokemon').style.display = 'block';
     const valueSelect = document.getElementById('select-order').value;
     const ordered = pokemon.order(dataMainPokemon, valueSelect);
     paintPokemones(ordered);
+  });
+
+  // Declarando el botón para gráficos
+  const buttonShowChart = document.getElementById('chartsButton');
+  
+  buttonShowChart.addEventListener('click', () => {
+    document.getElementById('list-pokemon').style.display = 'none';
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages': ['corechart']});
+      
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+      
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
+    function drawChart() {
+      // Create the data table.
+      const data = new google.visualization.DataTable();
+      data.addColumn('string', 'Name of Pokemons');
+      data.addColumn('number', 'Quantity');
+      data.addRows([
+        pokemon.quantityByType(dataMainPokemon, 'Grass'),
+        pokemon.quantityByType(dataMainPokemon, 'Poison'),
+        pokemon.quantityByType(dataMainPokemon, 'Fire'),
+        pokemon.quantityByType(dataMainPokemon, 'Flying'),
+        pokemon.quantityByType(dataMainPokemon, 'Water'),
+        pokemon.quantityByType(dataMainPokemon, 'Bug'),
+        pokemon.quantityByType(dataMainPokemon, 'Normal'),
+        pokemon.quantityByType(dataMainPokemon, 'Electric'),
+        pokemon.quantityByType(dataMainPokemon, 'Ground'),
+        pokemon.quantityByType(dataMainPokemon, 'Fighting'),
+        pokemon.quantityByType(dataMainPokemon, 'Psychic'),
+        pokemon.quantityByType(dataMainPokemon, 'Rock'),
+        pokemon.quantityByType(dataMainPokemon, 'Ice'),
+        pokemon.quantityByType(dataMainPokemon, 'Ghost'),
+        pokemon.quantityByType(dataMainPokemon, 'Dragon') 
+      ]);
+      
+      // Set chart options
+      const options = {'title': 'Quantity of Pokemons',
+        'width': 950,
+        'height': 400};
+      
+      // Instantiate and draw our chart, passing in some options.
+      const chart = new google.visualization.ColumnChart(document.getElementById('charts'));
+      chart.draw(data, options);
+    }
   });
 }
